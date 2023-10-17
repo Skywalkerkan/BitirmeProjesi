@@ -1,5 +1,6 @@
 package com.example.bitirmeprojesi.data.repo
 
+import android.util.Log
 import com.example.bitirmeprojesi.data.datasource.YemeklerDataSource
 import com.example.bitirmeprojesi.data.entity.SepetYemekler
 import com.example.bitirmeprojesi.data.entity.Yemekler
@@ -16,6 +17,8 @@ class YemeklerRepository(var yds: YemeklerDataSource) {
     suspend fun sepetYukle(kullanici_adi: String): List<SepetYemekler> = yds.seepetiYukle(kullanici_adi)
 
    // suspend fun ara(aramaKelimesi:String) : List<Kisiler> = kds.ara(aramaKelimesi)
+
+    suspend fun sil (sepet_yemek_id: Int, kullanici_adi: String) = yds.sil(sepet_yemek_id, kullanici_adi)
 
 
 

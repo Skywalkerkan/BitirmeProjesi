@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.bitirmeprojesi.R
 import com.example.bitirmeprojesi.data.entity.SepetYemekler
@@ -32,12 +33,13 @@ class SepetFragment : Fragment() {
 
         binding = FragmentSepetBinding.inflate(inflater, container, false)
 
-        binding.sepetRv.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        binding.sepetRv.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.sepetListesi.observe(viewLifecycleOwner){
             val sepetlerAdapter = SepetAdapter(requireContext(), it, viewModel)
             binding.sepetRv.adapter = sepetlerAdapter
         }
+
 
 
 
@@ -56,9 +58,7 @@ class SepetFragment : Fragment() {
     override fun onResume() {
         super.onResume()
        // Log.e("Sepet", "${viewModel.sepetListesi.value}")
-        viewModel.sepetiYukle()
-        Log.e("Sepet", "${viewModel.sepetListesi.value}")
-
+        //viewModel.sepetiYukle()
 
         Log.e("On Resume", "girildi")
     }

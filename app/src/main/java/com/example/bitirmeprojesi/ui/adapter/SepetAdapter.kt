@@ -1,6 +1,7 @@
 package com.example.bitirmeprojesi.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.example.bitirmeprojesi.databinding.CardTasarimBinding
 import com.example.bitirmeprojesi.databinding.SepetcardTasarimBinding
 import com.example.bitirmeprojesi.ui.viewmodel.AnasayfaViewModel
 import com.example.bitirmeprojesi.ui.viewmodel.SepetViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class SepetAdapter(var mContext: Context, var sepetListesi: List<SepetYemekler>, var viewModel: SepetViewModel)
     :RecyclerView.Adapter<SepetAdapter.CardTasarimTutucuSepet>(){
@@ -21,26 +23,63 @@ class SepetAdapter(var mContext: Context, var sepetListesi: List<SepetYemekler>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimTutucuSepet {
         val binding = SepetcardTasarimBinding.inflate(LayoutInflater.from(mContext), parent, false)
 
+
         return  CardTasarimTutucuSepet(binding)
     }
 
 
 
     override fun onBindViewHolder(holder: CardTasarimTutucuSepet, position: Int) {
-        val yemek = sepetListesi.get(position)
-        val t = holder.tasarimSepet
 
-        t.yemekAd.text = "${yemek.yemek_adi}"
-        t.yemekFiyat.text = "${yemek.yemek_fiyat}"
-        t.yemekAdet.text = "${yemek.yemek_siparis_adet}"
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
-        Glide.with(t.imageView2).load(url).override(300, 300).into(t.imageView2)
+        Log.e("Erkan", "${sepetListesi.size}")
+
+            val yemek = sepetListesi.get(position)
+            val t = holder.tasarimSepet
+
+            t.yemekAd.text = "${yemek.yemek_adi}"
+            t.yemekFiyat.text = "${yemek.yemek_fiyat}"
+            t.yemekAdet.text = "${yemek.yemek_siparis_adet}"
+
+
+            val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
+            Glide.with(t.imageView2).load(url).override(300, 300).into(t.imageView2)
+
+            t.imageViewSil.setOnClickListener {
+                Log.e("SepetSilindi", "${yemek.yemek_siparis_adet}")
+                Snackbar.make(it, "${yemek.sepet_yemek_id}  ${yemek.yemek_adi} Silinsin mi", Snackbar.LENGTH_SHORT)
+                    .setAction("Evet"){
+                        sepettenSil(sepet_yemek_id = yemek.sepet_yemek_id, kullanici_adi = yemek.kullanici_adi)
+
+                        if (sepetListesi.size == 1){
+                            sepetListesi = emptyList() // SepetListesi'ni boş bir liste ile güncelle
+                            notifyDataSetChanged()
+
+                        }
+
+                    }.show()
+            }
+
+
+
+
 
 
     }
 
     override fun getItemCount(): Int {
+      //  Log.e("SepetSilindi", "${sepetListesi.size}")
+
         return sepetListesi.size
+    }
+
+
+    fun sepettenSil(sepet_yemek_id: Int,
+                   kullanici_adi: String){
+
+        viewModel.sepettenSil(sepet_yemek_id, kullanici_adi)
+
+
+
     }
 
 

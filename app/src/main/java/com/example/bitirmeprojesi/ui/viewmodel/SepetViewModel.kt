@@ -21,18 +21,30 @@ class SepetViewModel @Inject constructor(var yrepo: YemeklerRepository): ViewMod
     var sepetListesi = MutableLiveData<List<SepetYemekler>>()
 
 
-  /*  init {
+    init {
         sepetiYukle()
-    }*/
+    }
 
     fun sepetiYukle(){
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                sepetListesi.value
-                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "10")
-                Log.e("Yemek", "${sepetListesi.value}")
-            }catch (e: Exception){}
+
+                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "son1")
+                Log.e("SepetSilindi", "${sepetListesi.value}")
+            }catch (e: Exception){
+
+            }
         }
+    }
+
+    fun sepettenSil(sepet_yemek_id: Int, kullanici_adi: String){
+
+        CoroutineScope(Dispatchers.Main).launch {
+            yrepo.sil(sepet_yemek_id, kullanici_adi)
+
+            sepetiYukle()
+        }
+
     }
 
 

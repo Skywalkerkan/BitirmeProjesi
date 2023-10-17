@@ -42,4 +42,10 @@ class YemeklerDataSource(var ydao: YemeklerDao) {
     }
 
 
+    suspend fun sil (sepet_yemek_id: Int, kullanici_adi: String) {
+        val cevap = ydao.sepettenSil(sepet_yemek_id, kullanici_adi)
+        Log.e("kesbe" , "Başaro: ${cevap.success} - Mesaj ${cevap.message}")
+    }
+
+
 }

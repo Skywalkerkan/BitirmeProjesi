@@ -4,11 +4,14 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bitirmeprojesi.data.entity.Yemekler
 import com.example.bitirmeprojesi.databinding.CardTasarimBinding
 import com.example.bitirmeprojesi.databinding.FragmentAnasayfaBinding
+import com.example.bitirmeprojesi.ui.fragment.AnasayfaFragment
+import com.example.bitirmeprojesi.ui.fragment.AnasayfaFragmentDirections
 import com.example.bitirmeprojesi.ui.viewmodel.AnasayfaViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -43,8 +46,14 @@ class YemeklerAdapter(var mContext: Context, var yemeklerListesi: List<Yemekler>
                 .setAction("EVET"){*/
 
                     siparisAdet += 1
-                    sepeteEkle(yemek.yemek_adi, yemek.yemek_resim_adi, yemek.yemek_fiyat, siparisAdet, "10")
+                    sepeteEkle(yemek.yemek_adi, yemek.yemek_resim_adi, yemek.yemek_fiyat, siparisAdet, "son1")
               //  }.show()
+        }
+
+
+        t.cardView.setOnClickListener {
+            val gecis = AnasayfaFragmentDirections.detayGecis(yemekler = yemek)
+            Navigation.findNavController(it).navigate(gecis)
         }
 
     }
