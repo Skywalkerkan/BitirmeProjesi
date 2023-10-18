@@ -38,6 +38,14 @@ class SepetFragment : Fragment() {
         viewModel.sepetListesi.observe(viewLifecycleOwner){
             val sepetlerAdapter = SepetAdapter(requireContext(), it, viewModel)
             binding.sepetRv.adapter = sepetlerAdapter
+            Log.e("Mesaj", "${viewModel.sepetListesi.value}")
+            var toplamFiyat = 0
+            for(para in viewModel.sepetListesi.value!!){
+                toplamFiyat += para.yemek_fiyat * para.yemek_siparis_adet
+            }
+            Log.e("Mesaj", "${toplamFiyat}")
+
+
         }
 
 
@@ -52,6 +60,7 @@ class SepetFragment : Fragment() {
         val tempViewModel: SepetViewModel by viewModels()
         viewModel = tempViewModel
 
+     //   Log.e("Mesaj", "${viewModel.sepetListesi.value}")
 
     }
 

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.bitirmeprojesi.R
 import com.example.bitirmeprojesi.data.entity.Yemekler
@@ -28,32 +30,72 @@ class AnasayfaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentAnasayfaBinding.inflate(inflater, container, false)
+            binding = FragmentAnasayfaBinding.inflate(inflater, container, false)
 
-        binding.yemeklerRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            binding.yemeklerRv.layoutManager = GridLayoutManager(requireContext(), 2)
+    //StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        viewModel.yemeklerListesi.observe(viewLifecycleOwner){
-            val yemeklerAdapter = YemeklerAdapter(requireContext(), it, viewModel)
-            binding.yemeklerRv.adapter = yemeklerAdapter
-        }
-
-
-
-
-        binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
-            override fun onQueryTextChange(newText: String): Boolean {//Harf girdikçe ve sildikçe
-                ara(newText)
-                return true
+            viewModel.yemeklerListesi.observe(viewLifecycleOwner){
+                val yemeklerAdapter = YemeklerAdapter(requireContext(), it, viewModel)
+                binding.yemeklerRv.adapter = yemeklerAdapter
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean {//Arama iconuna bastığında
-                ara(query)
-                return false
-            }
-        })
 
 
-        return  binding.root
+
+            binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
+                override fun onQueryTextChange(newText: String): Boolean {//Harf girdikçe ve sildikçe
+                    val yemeklerListesi = viewModel.yemeklerListesi.value
+
+                    val filteredYemekler = yemeklerListesi?.filter { yemek ->
+                        yemek.yemek_adi.contains(newText, ignoreCase = true)
+
+                    }
+
+
+                   /* Log.e("Mesaj", "${yemeklerListesi}")
+                    if (yemeklerListesi == null) {
+                        Log.e("Mesaj", "${yemeklerListesi}")
+                    }*/
+
+                    /*if (yemeklerListesi != null) {
+                        if (yemeklerListesi.size > 0) {
+                            // Liste dolu
+                            Log.e("Mesajd", "${yemeklerListesi}")
+                        } else {
+                            // Liste boş
+                            Log.e("Mesajb", "${yemeklerListesi}")
+                            viewModel.yemekleriYukle()
+                            viewModel.yemeklerListesi.value = filteredYemekler
+                        }
+                    }*/
+
+
+                    viewModel.yemeklerListesi.value = filteredYemekler
+
+
+
+               //     Log.e("Mesaj", "${viewModel.yemeklerListesi.value?.size}")
+
+                    if (newText == "") {
+                        Log.e("Mesaj", "${newText}")
+                        viewModel.yemekleriYukle()
+                    }
+
+
+                    //Log.e("Mesaj", "$yemeklerListesi")
+
+                    return true
+                }
+
+                override fun onQueryTextSubmit(query: String): Boolean {//Arama iconuna bastığında
+                    ara(query)
+                    return false
+                }
+            })
+
+
+            return  binding.root
 
     }
 
@@ -67,7 +109,7 @@ class AnasayfaFragment : Fragment() {
         Log.e("Ara", "$aramaKelimesi")
     }
 
-   /* override fun onResume() {
+    /*override fun onResume() {
         super.onResume()
         viewModel.yemekleriYukle()
     }*/

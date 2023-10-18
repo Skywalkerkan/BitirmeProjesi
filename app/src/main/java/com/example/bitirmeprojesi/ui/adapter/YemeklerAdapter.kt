@@ -56,6 +56,22 @@ class YemeklerAdapter(var mContext: Context, var yemeklerListesi: List<Yemekler>
             Navigation.findNavController(it).navigate(gecis)
         }
 
+        t.imageView4.setOnClickListener {
+            val kalpResimId = mContext.resources.getIdentifier("kalp_resim", "drawable", mContext.packageName)
+            val kalpResimBosId = mContext.resources.getIdentifier("kalp_resim_bos", "drawable", mContext.packageName)
+
+            if (kalpResimId != 0) {
+                if (t.imageView4.tag == null || t.imageView4.tag == kalpResimBosId) {
+                    t.imageView4.setImageResource(kalpResimId)
+                    t.imageView4.tag = kalpResimId
+                } else {
+                    t.imageView4.setImageResource(kalpResimBosId)
+                    t.imageView4.tag = kalpResimBosId
+                }
+            }
+
+        }
+
     }
 
 

@@ -37,8 +37,9 @@ class SepetAdapter(var mContext: Context, var sepetListesi: List<SepetYemekler>,
             val t = holder.tasarimSepet
 
             t.yemekAd.text = "${yemek.yemek_adi}"
-            t.yemekFiyat.text = "${yemek.yemek_fiyat}"
-            t.yemekAdet.text = "${yemek.yemek_siparis_adet}"
+            t.yemekFiyat.text = "${yemek.yemek_fiyat} tl"
+            t.yemekAdet.text = "${yemek.yemek_siparis_adet} Adet"
+            t.yemekToplamFiyat.text = "${yemek.yemek_fiyat * yemek.yemek_siparis_adet} tl"
 
 
             val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"

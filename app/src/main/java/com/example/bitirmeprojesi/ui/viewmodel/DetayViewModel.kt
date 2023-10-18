@@ -25,4 +25,6 @@ class DetayViewModel @Inject constructor(var yrepo: YemeklerRepository) : ViewMo
 
 
 
+
+
 }
