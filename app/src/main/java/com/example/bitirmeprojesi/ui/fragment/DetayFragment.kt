@@ -54,7 +54,7 @@ class DetayFragment : Fragment() {
            // viewModel
             Log.e("gelen", "$gelenYemek")
             if (sayi > 0){ // Ekleyebilirsin hata
-                    viewModel.sepeteEkle(gelenYemek.yemek_adi, gelenYemek.yemek_resim_adi, gelenYemek.yemek_fiyat, sayi,"son1")
+                    viewModel.sepeteEkle(gelenYemek.yemek_adi, gelenYemek.yemek_resim_adi, gelenYemek.yemek_fiyat, sayi,"son2")
                 }
             else{
                 Toast.makeText(context, "Sipariş Adeti 0'dan büyük olmalı", Toast.LENGTH_SHORT).show()

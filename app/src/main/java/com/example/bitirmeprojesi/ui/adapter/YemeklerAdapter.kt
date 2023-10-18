@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -33,7 +34,7 @@ class YemeklerAdapter(var mContext: Context, var yemeklerListesi: List<Yemekler>
 
         val yemek = yemeklerListesi.get(position)
         val t = holder.tasarim
-
+        var siparisAdet = 0
         t.yemekTextView.text = "${yemek.yemek_adi}"
         t.fiyatTextView.text = "${yemek.yemek_fiyat}"
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
@@ -45,9 +46,11 @@ class YemeklerAdapter(var mContext: Context, var yemeklerListesi: List<Yemekler>
          /*   Snackbar.make(it,"${yemek.yemek_adi} silinsin mi?", Snackbar.LENGTH_SHORT)
                 .setAction("EVET"){*/
 
-                    siparisAdet += 1
-                    sepeteEkle(yemek.yemek_adi, yemek.yemek_resim_adi, yemek.yemek_fiyat, siparisAdet, "son1")
+                    siparisAdet = 1
+                    sepeteEkle(yemek.yemek_adi, yemek.yemek_resim_adi, yemek.yemek_fiyat, siparisAdet, "son2")
               //  }.show()
+             Toast.makeText(mContext, "${yemek.yemek_adi} Sepete Eklendi", Toast.LENGTH_SHORT).show()
+
         }
 
 
