@@ -38,4 +38,13 @@
             android:id="@+id/anasayfaGecis"
             app:destination="@id/anasayfaFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.bitirmeprojesi.ui.fragment.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/favoriteToDetay"
+            app:destination="@id/detayFragment" />
+    </fragment>
 </navigation>

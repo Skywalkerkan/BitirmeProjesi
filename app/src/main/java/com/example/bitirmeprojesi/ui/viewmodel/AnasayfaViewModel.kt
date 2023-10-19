@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bitirmeprojesi.data.entity.SepetYemekler
 import com.example.bitirmeprojesi.data.entity.Yemekler
+import com.example.bitirmeprojesi.data.entity.YemeklerRoom
 import com.example.bitirmeprojesi.data.repo.YemeklerRepository
+import com.example.bitirmeprojesi.data.repo.YemeklerRoomRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +17,11 @@ import javax.inject.Inject
 import kotlin.math.log
 
 @HiltViewModel
-class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository): ViewModel() {
+class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository, var yrepoRoom: YemeklerRoomRepository): ViewModel() {
+
+
+    var yemeklerListesiRoom = MutableLiveData<List<YemeklerRoom>>()
+
 
 
     var yemeklerListesi = MutableLiveData<List<Yemekler>>()
@@ -179,6 +185,33 @@ class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository): View
         }
 
     }
+
+
+
+    fun roomKaydet(yemek_id: Int, yemek_adi: String, yemek_resim_adi: String, yemek_fiyat: Int){
+        CoroutineScope(Dispatchers.Main).launch {
+            yrepoRoom.kaydet(yemek_id, yemek_adi, yemek_resim_adi, yemek_fiyat)
+        }
+    }
+
+    fun yemekleriYukleRoom(){
+        CoroutineScope(Dispatchers.Main).launch {
+            yemeklerListesiRoom.value = yrepoRoom.yemekleriYukle()
+            Log.e("room", "${yemeklerListesiRoom.value}")
+        }
+    }
+
+
+    fun sepettenSilRoom(yemek_asil_id: Int){
+
+        CoroutineScope(Dispatchers.Main).launch {
+            yrepoRoom.sil(yemek_asil_id)
+
+            yemekleriYukle()
+        }
+
+    }
+
 
     /*fun yemekEkle(){
         CoroutineScope(Dispatchers.Main).launch {

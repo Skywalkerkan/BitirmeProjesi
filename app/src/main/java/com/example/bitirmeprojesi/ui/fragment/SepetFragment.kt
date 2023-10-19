@@ -45,7 +45,7 @@ class SepetFragment : Fragment() {
             }
             Log.e("Mesaj", "${toplamFiyat}")
 
-
+            binding.progressBar2.visibility = View.GONE
         }
 
 

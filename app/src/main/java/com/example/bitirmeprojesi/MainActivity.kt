@@ -1,5 +1,6 @@
 package com.example.bitirmeprojesi
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,63 +41,90 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        binding.button.setOnClickListener {
+            val navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
+            if (navController.currentDestination != null && navController.currentDestination!!.id != R.id.anasayfaFragment2) {
+
+               // navController.popBackStack()
+                //   binding.button.setBackgroundColor(resources.getColor(R.color.purple, null))
+                //   binding.button2.setBackgroundColor(resources.getColor(R.color.orange, null))
+              //  sayi = 0
+
+                val navController = findNavController(R.id.navHostFragment)
+
+
+                val currentDestination = navController.currentDestination
+
+                if (currentDestination?.id != R.id.anasayfaFragment2) {
+                    // Geçerli fragment, sepetFragment değilse, sepetFragment'a git
+                    navController.navigate(R.id.anasayfaFragment2)
+
+
+
+
+                    val yeniIkon = resources.getDrawable(R.drawable.kalp_bos_menu)
+                    val boyutDP = 36
+                    val boyutPX = (boyutDP * resources.displayMetrics.density).toInt()
+                    yeniIkon.setBounds(-6, 4, boyutPX, boyutPX)
+                    binding.button2.setCompoundDrawables(null, yeniIkon, null, null)
+
+
+                    val anasayfaIkon = resources.getDrawable(R.drawable.anasayfa_resim)
+
+                    anasayfaIkon.setBounds(-6, 4, boyutPX, boyutPX)
+                    binding.button.setCompoundDrawables(null, anasayfaIkon, null, null)
+                    binding.imageButton2.setColorFilter(Color.WHITE)
+
+                }
+
+
+
+            }
+        }
+
 
         binding.button2.setOnClickListener {
-            val navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
+          /*  val navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
             if (navController.currentDestination != null && navController.currentDestination!!.id != R.id.anasayfaFragment2) {
 
                 navController.popBackStack()
              //   binding.button.setBackgroundColor(resources.getColor(R.color.purple, null))
              //   binding.button2.setBackgroundColor(resources.getColor(R.color.orange, null))
                 sayi = 0
+            }*/
+
+            val navController = findNavController(R.id.navHostFragment)
+
+
+            val currentDestination = navController.currentDestination
+
+            if (currentDestination?.id != R.id.favoriteFragment) {
+                // Geçerli fragment, sepetFragment değilse, sepetFragment'a git
+                navController.navigate(R.id.favoriteFragment)
+                val kalpIkon = resources.getDrawable(R.drawable.kalp_menu)
+                val boyutDP = 36
+                val boyutPX = (boyutDP * resources.displayMetrics.density).toInt()
+                kalpIkon.setBounds(-6, 4, boyutPX, boyutPX)
+                binding.button2.setCompoundDrawables(null, kalpIkon, null, null)
+
+                val anasayfaIkon = resources.getDrawable(R.drawable.anasayfa_resim_bos)
+
+                anasayfaIkon.setBounds(-6, 4, boyutPX, boyutPX)
+                binding.button.setCompoundDrawables(null, anasayfaIkon, null, null)
+                binding.imageButton2.setColorFilter(Color.WHITE)
+
+
+
             }
+
         }
 
-           /* binding.button.setOnClickListener {
-                if (sayi != 1) {
 
 
-                    val navController =
-                        (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
-                    val currentDestination = navController.currentDestination
-                    if (currentDestination != null && currentDestination.id != R.id.sepetGecis) {
-                        navController.navigate(R.id.sepetGecis)
-                        //    binding.button.setBackgroundColor(resources.getColor(R.color.orange, null))
-                        //     binding.button2.setBackgroundColor(resources.getColor(R.color.purple, null))
-
-                        Log.e("Mesaj", "$sayi")
-                        sayi = 1
-                    }
-                }
-            }*/
 
 
         binding.imageButton2.setOnClickListener {
-           /* if (sayi != 1) {
 
-
-                val navController =
-                    (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
-                val currentDestination = navController.currentDestination
-                if (currentDestination != null && currentDestination.id != R.id.sepetGecis) {
-                    navController.navigate(R.id.sepetGecis)
-                    //    binding.button.setBackgroundColor(resources.getColor(R.color.orange, null))
-                    //     binding.button2.setBackgroundColor(resources.getColor(R.color.purple, null))
-
-                    Log.e("Mesaj", "$sayi")
-                    sayi = 1
-                }
-
-
-                else if (currentDestination != null && currentDestination.id != R.id.detay_Gecis) {
-                    navController.navigate(R.id.sepetGecis2)
-                    //    binding.button.setBackgroundColor(resources.getColor(R.color.orange, null))
-                    //     binding.button2.setBackgroundColor(resources.getColor(R.color.purple, null))
-
-                    Log.e("Mesaj", "$sayi")
-                    sayi = 1
-                }
-            }*/
             val navController = findNavController(R.id.navHostFragment)
 
 
@@ -105,6 +133,22 @@ class MainActivity : AppCompatActivity() {
             if (currentDestination?.id != R.id.sepetFragment) {
                 // Geçerli fragment, sepetFragment değilse, sepetFragment'a git
                 navController.navigate(R.id.sepetFragment)
+
+                binding.imageButton2.setColorFilter(Color.BLACK)
+
+
+                val kalpIkon = resources.getDrawable(R.drawable.kalp_bos_menu)
+                val boyutDP = 36
+                val boyutPX = (boyutDP * resources.displayMetrics.density).toInt()
+                kalpIkon.setBounds(-6, 4, boyutPX, boyutPX)
+                binding.button2.setCompoundDrawables(null, kalpIkon, null, null)
+
+                val anasayfaIkon = resources.getDrawable(R.drawable.anasayfa_resim_bos)
+
+                anasayfaIkon.setBounds(-6, 4, boyutPX, boyutPX)
+                binding.button.setCompoundDrawables(null, anasayfaIkon, null, null)
+                binding.imageButton2.setColorFilter(Color.BLACK)
+
             }
         }
 
