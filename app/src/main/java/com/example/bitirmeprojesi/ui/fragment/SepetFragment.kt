@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.airbnb.lottie.LottieAnimationView
 import com.example.bitirmeprojesi.R
 import com.example.bitirmeprojesi.data.entity.SepetYemekler
 import com.example.bitirmeprojesi.databinding.FragmentSepetBinding
@@ -24,6 +26,7 @@ class SepetFragment : Fragment() {
 
     private lateinit var binding: FragmentSepetBinding
     private lateinit var viewModel: SepetViewModel
+    private lateinit var animationView: LottieAnimationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,11 +49,28 @@ class SepetFragment : Fragment() {
             }
             Log.e("Mesaj", "${toplamFiyat}")
             binding.textViewToplam.text = "Toplam:  $toplamFiyat tl"
+            binding.imageView6.visibility = View.GONE
             //binding.progressBar2.visibility = View.GONE
         }
         binding.progressBar2.visibility = View.GONE
 
 
+        animationView = binding.animationView
+
+        binding.button3.setOnClickListener {
+            animationView.visibility = View.VISIBLE
+            animationView.playAnimation()
+
+
+            Toast.makeText(context, " Siparişin yolda", Toast.LENGTH_SHORT).show()
+            animationView.bringToFront()
+
+            // Animasyonun süresini alın ve tamamlandığında gizleyin
+            val animationDuration = animationView.duration
+            binding.button3.postDelayed({
+                animationView.visibility = View.GONE
+            }, animationDuration)
+        }
 
 
 

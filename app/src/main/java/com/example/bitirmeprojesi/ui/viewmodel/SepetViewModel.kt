@@ -32,6 +32,8 @@ class SepetViewModel @Inject constructor(var yrepo: YemeklerRepository): ViewMod
                 sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "erkan_cosar")
                 Log.e("SepetSilindi", "${sepetListesi.value}")
             }catch (e: Exception){
+                Log.e("SepetSilindi", "keke")
+                sepetListesi.value = emptyList() // Boş bir liste ile başlat
 
             }
         }
