@@ -106,7 +106,7 @@ class YemeklerAdapter(var mContext: Context, var yemeklerListesi: List<Yemekler>
 
         var siparisAdet = 0
         t.yemekTextView.text = "${yemek.yemek_adi}"
-        t.fiyatTextView.text = "${yemek.yemek_fiyat}"
+        t.fiyatTextView.text = "${yemek.yemek_fiyat} tl"
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
         Glide.with(t.imageView).load(url).override(300, 300).into(t.imageView)
 

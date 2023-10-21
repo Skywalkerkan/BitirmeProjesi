@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity_nav"
-    app:startDestination="@id/anasayfaFragment2">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/anasayfaFragment2"
@@ -46,5 +46,14 @@
         <action
             android:id="@+id/favoriteToDetay"
             app:destination="@id/detayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.bitirmeprojesi.ui.fragment.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_anasayfaFragment2"
+            app:destination="@id/anasayfaFragment2" />
     </fragment>
 </navigation>

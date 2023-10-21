@@ -27,6 +27,7 @@ class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var viewModel: AnasayfaViewModel
     var yemeklerListesiRoom = MutableLiveData<List<YemeklerRoom>>()
+    var newTextLength = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +39,8 @@ class AnasayfaFragment : Fragment() {
 
             binding = FragmentAnasayfaBinding.inflate(inflater, container, false)
             binding.searchView.visibility = View.GONE
+
+
 
 
             binding.yemeklerRv.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -63,8 +66,9 @@ class AnasayfaFragment : Fragment() {
 
             binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
                 override fun onQueryTextChange(newText: String): Boolean {//Harf girdikçe ve sildikçe
-                    val yemeklerListesi = viewModel.yemeklerListesi.value
 
+                    val yemeklerListesi = viewModel.yemeklerListesi.value
+                    Log.e("Mesaj", "$newText")
                     val filteredYemekler = yemeklerListesi?.filter { yemek ->
                         yemek.yemek_adi.contains(newText, ignoreCase = true)
 
@@ -91,6 +95,17 @@ class AnasayfaFragment : Fragment() {
 
                     viewModel.yemeklerListesi.value = filteredYemekler
 
+                   /* if (newTextLength == newText.length) {
+                        Log.e("Silindi", "${newText}")
+
+                        viewModel.yemekleriYukle()
+                        val yemeklerListesi = viewModel.yemeklerListesi.value
+                        Log.e("Mesaj", "$yemeklerListesi")
+                        val filteredYemekler = yemeklerListesi?.filter { yemek ->
+                            yemek.yemek_adi.contains(newText, ignoreCase = true)
+
+                        }
+                    }*/
 
 
                //     Log.e("Mesaj", "${viewModel.yemeklerListesi.value?.size}")
@@ -102,7 +117,7 @@ class AnasayfaFragment : Fragment() {
 
 
                     //Log.e("Mesaj", "$yemeklerListesi")
-
+                    newTextLength = newText.length-1
                     return true
                 }
 

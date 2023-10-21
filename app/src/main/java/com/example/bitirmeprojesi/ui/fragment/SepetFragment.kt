@@ -30,6 +30,7 @@ class SepetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        var toplamFiyat = 0
 
         binding = FragmentSepetBinding.inflate(inflater, container, false)
 
@@ -39,12 +40,15 @@ class SepetFragment : Fragment() {
             val sepetlerAdapter = SepetAdapter(requireContext(), it, viewModel)
             binding.sepetRv.adapter = sepetlerAdapter
             Log.e("Mesaj", "${viewModel.sepetListesi.value}")
-            var toplamFiyat = 0
             for(para in viewModel.sepetListesi.value!!){
                 toplamFiyat += para.yemek_fiyat * para.yemek_siparis_adet
             }
             Log.e("Mesaj", "${toplamFiyat}")
 
+            binding.progressBar2.visibility = View.GONE
+        }
+
+        if(toplamFiyat == 0){
             binding.progressBar2.visibility = View.GONE
         }
 
@@ -67,9 +71,9 @@ class SepetFragment : Fragment() {
     override fun onResume() {
         super.onResume()
        // Log.e("Sepet", "${viewModel.sepetListesi.value}")
-        //viewModel.sepetiYukle()
+      //  viewModel.sepetiYukle()
 
-        Log.e("On Resume", "girildi")
+     //  Log.e("On Resume", "${viewModel.sepetListesi.value}")
     }
 
 

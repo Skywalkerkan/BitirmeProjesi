@@ -207,7 +207,7 @@ class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository, var y
         CoroutineScope(Dispatchers.Main).launch {
             yrepoRoom.sil(yemek_asil_id)
 
-            yemekleriYukle()
+          //  yemekleriYukle()
         }
 
     }

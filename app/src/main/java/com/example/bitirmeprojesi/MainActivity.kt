@@ -36,7 +36,30 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager // MainActivity içinde kullanıyorsanız*/
 
-      //  val navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
+        val navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
+
+        Log.e("Görüntü", "Girdi")
+
+
+        navController.addOnDestinationChangedListener{_,destination,_->
+            when(destination.id) {
+                R.id.anasayfaFragment2-> {
+                    binding.button.visibility = View.VISIBLE
+                    binding.button2.visibility = View.VISIBLE
+                    binding.imageButton2.visibility = View.VISIBLE
+                    binding.toolbar.visibility = View.VISIBLE
+                }
+                R.id.splashScreenFragment
+
+                -> {
+                    binding.button.visibility = View.GONE
+                    binding.button2.visibility = View.GONE
+                    binding.imageButton2.visibility = View.GONE
+                    binding.toolbar.visibility = View.GONE
+
+                }
+            }
+        }
 
 
 
