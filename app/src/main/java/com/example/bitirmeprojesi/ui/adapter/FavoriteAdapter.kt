@@ -52,7 +52,7 @@ class FavoriteAdapter(var mContext: Context, var favoriteListesi: List<YemeklerR
         t.yemekAdiFav.text = "${yemek.yemek_adi}"
         t.yemekAdiFiyat.text = "${yemek.yemek_fiyat} tl"
       //  t.yemekAdetFav.text = "${yemek.} Adet"
-        t.yemekToplamPara.text = "${yemek.yemek_fiyat} tl"
+       // t.yemekToplamPara.text = "${yemek.yemek_fiyat} tl"
 
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
@@ -60,7 +60,7 @@ class FavoriteAdapter(var mContext: Context, var favoriteListesi: List<YemeklerR
 
         t.kalpImage.setOnClickListener {
             Log.e("SepetSilindi", "${yemek.yemek_resim_adi}")
-            Snackbar.make(it, "${yemek.yemek_id_asil}  ${yemek.yemek_adi} Silinsin mi", Snackbar.LENGTH_SHORT)
+            Snackbar.make(it, "${yemek.yemek_adi} Silinsin mi", Snackbar.LENGTH_SHORT)
                 .setAction("Evet"){
 
                 viewModel.sepettenSil(yemek_asil_id = yemek.yemek_id_asil)

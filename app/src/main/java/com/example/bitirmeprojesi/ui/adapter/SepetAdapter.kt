@@ -47,10 +47,10 @@ class SepetAdapter(var mContext: Context, var sepetListesi: List<SepetYemekler>,
 
             t.imageViewSil.setOnClickListener {
                 Log.e("SepetSilindi", "${yemek.yemek_siparis_adet}")
-                Snackbar.make(it, "${yemek.sepet_yemek_id}  ${yemek.yemek_adi} Silinsin mi", Snackbar.LENGTH_SHORT)
+                Snackbar.make(it, " ${yemek.yemek_adi} Silinsin mi", Snackbar.LENGTH_SHORT)
                     .setAction("Evet"){
                         sepettenSil(sepet_yemek_id = yemek.sepet_yemek_id, kullanici_adi = yemek.kullanici_adi)
-
+                        viewModel.sepetiYukle()
                         if (sepetListesi.size == 1){
                             sepetListesi = emptyList() // SepetListesi'ni boş bir liste ile güncelle
                             notifyDataSetChanged()

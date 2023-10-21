@@ -29,7 +29,7 @@ class SepetViewModel @Inject constructor(var yrepo: YemeklerRepository): ViewMod
         CoroutineScope(Dispatchers.Main).launch {
             try {
 
-                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "son2")
+                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "erkan_cosar")
                 Log.e("SepetSilindi", "${sepetListesi.value}")
             }catch (e: Exception){
 

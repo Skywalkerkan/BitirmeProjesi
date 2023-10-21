@@ -54,7 +54,7 @@ class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository, var y
             // sepetiYukle()
             try {
 
-                sepetListesiAsil.value = yrepo.sepetYukle(kullanici_adi = "son2")
+                sepetListesiAsil.value = yrepo.sepetYukle(kullanici_adi = "erkan_cosar")
                 Log.e("Sepet   Silindi", "${sepetListesi.value}")
             } catch (e: Exception) {
                 Log.e("catch", "${sepetListesi.value}")
@@ -87,14 +87,14 @@ class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository, var y
                             //   }
                             sepettenSil(
                                 sepet_yemek_id = yemek.sepet_yemek_id,
-                                kullanici_adi = "son2"
+                                kullanici_adi = "erkan_cosar"
                             )
                         } else {
                             // İlk defa bu yemek adı ile karşılaşıldı, ekleyin.
                             gruplanmisYemekler[yemekAdi] = yemek
                             sepettenSil(
                                 sepet_yemek_id = yemek.sepet_yemek_id,
-                                kullanici_adi = "son2"
+                                kullanici_adi = "erkan_cosar"
                             )
 
                         }
@@ -145,7 +145,7 @@ class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository, var y
                         ekle.yemek_resim_adi,
                         ekle.yemek_fiyat,
                         ekle.yemek_siparis_adet,
-                        "son2"
+                        "erkan_cosar"
                     )
                 }
 
@@ -168,7 +168,7 @@ class AnasayfaViewModel @Inject constructor(var yrepo: YemeklerRepository, var y
         CoroutineScope(Dispatchers.Main).launch {
             try {
 
-                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "son2")
+                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "erkan_cosar")
                 //   Log.e("SepetSilindi", "${sepetListesi.value}")
             } catch (e: Exception) {
 

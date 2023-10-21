@@ -117,7 +117,7 @@ class YemeklerAdapter(var mContext: Context, var yemeklerListesi: List<Yemekler>
                 .setAction("EVET"){*/
 
                     siparisAdet = 1
-                    sepeteEkle(yemek.yemek_adi, yemek.yemek_resim_adi, yemek.yemek_fiyat, siparisAdet, "son2")
+                    sepeteEkle(yemek.yemek_adi, yemek.yemek_resim_adi, yemek.yemek_fiyat, siparisAdet, "erkan_cosar")
               //  }.show()
              Toast.makeText(mContext, "${yemek.yemek_adi} Sepete Eklendi", Toast.LENGTH_SHORT).show()
 

@@ -31,7 +31,7 @@ class DetayViewModel @Inject constructor(var yrepo: YemeklerRepository) : ViewMo
             // sepetiYukle()
             try {
 
-                sepetListesiAsil.value = yrepo.sepetYukle(kullanici_adi = "son2")
+                sepetListesiAsil.value = yrepo.sepetYukle(kullanici_adi = "erkan_cosar")
                 Log.e("Sepet   Silindi", "${sepetListesi.value}")
             } catch (e: Exception) {
                 Log.e("catch", "${sepetListesi.value}")
@@ -62,14 +62,14 @@ class DetayViewModel @Inject constructor(var yrepo: YemeklerRepository) : ViewMo
                             //   }
                             sepettenSil(
                                 sepet_yemek_id = yemek.sepet_yemek_id,
-                                kullanici_adi = "son2"
+                                kullanici_adi = "erkan_cosar"
                             )
                         } else {
                             // İlk yemek
                             gruplanmisYemekler[yemekAdi] = yemek
                             sepettenSil(
                                 sepet_yemek_id = yemek.sepet_yemek_id,
-                                kullanici_adi = "son2"
+                                kullanici_adi = "erkan_cosar"
                             )
 
                         }
@@ -120,7 +120,7 @@ class DetayViewModel @Inject constructor(var yrepo: YemeklerRepository) : ViewMo
                         ekle.yemek_resim_adi,
                         ekle.yemek_fiyat,
                         ekle.yemek_siparis_adet,
-                        "son2"
+                        "erkan_cosar"
                     )
                 }
 
@@ -143,7 +143,7 @@ class DetayViewModel @Inject constructor(var yrepo: YemeklerRepository) : ViewMo
         CoroutineScope(Dispatchers.Main).launch {
             try {
 
-                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "son2")
+                sepetListesi.value = yrepo.sepetYukle(kullanici_adi = "erkan_cosar")
              //   Log.e("SepetSilindi", "${sepetListesi.value}")
             } catch (e: Exception) {
 
